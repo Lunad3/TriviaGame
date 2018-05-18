@@ -85,7 +85,7 @@ function Qover(answer) {
         msg = "Time is UP";
     }
     $("#time").text(msg);
-    $("#score").text("Score : " + qList.length.toString() + "/" + score.toString());
+    $("#score").text("Score : " + score.toString() + "/" + qList.length.toString());
     Qpost();
 };
 
@@ -118,7 +118,7 @@ function Qpost() {
 };
 //----------------Waits for user to press START button and initiates quiz-------------
 $("#start").on("click", function () {
-    $("#score").text("Score : " + qList.length.toString() + "/" + score.toString())
+    $("#score").text("Score : " + score.toString() + "/" + qList.length.toString());
     $("#options").empty();
     startQuestion();
 
