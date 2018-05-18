@@ -9,6 +9,7 @@ var score = 0;
 var qIndex = 0;
 var timeId;
 var qAnsered = false;
+var canPressButton = true;;
 //----------------Timer Obj (counts down during question)-------------
 var timer =
     {
@@ -22,6 +23,7 @@ var timer =
                 timer.time--;
                 $("#time").text(timer.time);
                 if (timer.time == 0) {
+                    canPressButton = false;
                     timer.stop();
                     timer.reset();
                     Qover(-1);
@@ -43,9 +45,9 @@ var timer =
 //----------------startQuestion: starts the quiz/recursively iterates through questions-------------
 function startQuestion() {
     timer.start();
-    Qnext();
+    Qnext();    
     $(".button").on("click", function () {
-        if (!qAnsered) {
+        if (!qAnsered && canPressButton) {
             timer.stop();
             timer.reset();
             if ($(this).attr("id") == qList[qIndex].answer.toString()) {
@@ -110,6 +112,7 @@ function Qpost() {
                 $("#time").remove();
             }
             else {
+                canPressButton = true;
                 qAnsered = false;
                 startQuestion();
             }
